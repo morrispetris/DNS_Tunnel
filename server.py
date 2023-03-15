@@ -67,8 +67,10 @@ class SendProtocol(asyncio.DatagramProtocol):
 async def ping_forever(ws):
     try:
         while True:
-            yield from ws.ping()
-            yield from asyncio.sleep(30)
+            #yield from ws.ping()
+            #yield from asyncio.sleep(30)
+            yield ws.ping()
+            yield asyncio.sleep(30)
     except websockets.exceptions.ConnectionClosed:
         logging.info('connection closed, stop ping')
 
@@ -92,7 +94,8 @@ async def handle(ws, _):
     asyncio_ensure_future(ping_forever(ws))
     try:
         while True:
-            packed_data = yield from ws.recv()
+            #packed_data = yield from ws.recv()
+            packed_data = yield ws.recv()
             asyncio_ensure_future(lookup_dns(ws, packed_data))
     except websockets.exceptions.ConnectionClosed as exp:
         logging.info('connection closed, reason: ' + exp.reason)
