@@ -13,7 +13,8 @@ import websockets
 try:
     asyncio_ensure_future = asyncio.ensure_future
 except AttributeError:
-    asyncio_ensure_future = asyncio.async
+    #asyncio_ensure_future = asyncio.async
+    asyncio_ensure_future = getattr(asyncio, 'async')
 
 DNS_SERVER = ('8.8.8.8', 53)
 
