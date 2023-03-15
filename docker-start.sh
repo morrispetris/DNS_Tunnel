@@ -10,7 +10,8 @@ set -e
 defaultopts="-b 0.0.0.0"
 script=${mode}.py
 
-if [[ ! -f /.dockerinit ]] ; then
+#if [[ ! -f /.dockerinit ]] ; then
+if [[ ! -f /.dockerenv ]] ; then
 	echo "You're supposed to run $0 in docker containers"
 	exit 1
 fi
