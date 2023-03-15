@@ -13,6 +13,8 @@ RUN apk update && apk upgrade libressl-dev && apk add bash python3 py3-pip ca-ce
 
 RUN pip3 install -r requirements.txt
 
+EXPOSE 5353/udp 5353/tcp
+
 ENTRYPOINT ["./docker-start.sh"]
 
-EXPOSE 5353/udp 5353/tcp
+
