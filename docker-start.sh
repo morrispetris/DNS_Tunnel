@@ -1,6 +1,7 @@
 #! /bin/bash
 
 mode="$(< /etc/secrets/MODE)"
+echo "$mode"
 
 set -e
 
