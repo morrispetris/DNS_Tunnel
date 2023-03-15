@@ -62,8 +62,9 @@ class SendProtocol(asyncio.DatagramProtocol):
             logging.info('connection closed when trying to send packet to client')
 
 
-@asyncio.coroutine
-def ping_forever(ws):
+#@asyncio.coroutine
+#def ping_forever(ws):
+async ping_forever(ws):
     try:
         while True:
             yield from ws.ping()
@@ -72,8 +73,9 @@ def ping_forever(ws):
         logging.info('connection closed, stop ping')
 
 
-@asyncio.coroutine
-def lookup_dns(ws, packed_data):
+#@asyncio.coroutine
+#def lookup_dns(ws, packed_data):
+async def lookup_dns(ws, packed_data):
     asyncio_ensure_future(asyncio.get_event_loop().create_datagram_endpoint(
         lambda: SendProtocol(ws, packed_data),
         None,
@@ -81,8 +83,9 @@ def lookup_dns(ws, packed_data):
     ))
 
 
-@asyncio.coroutine
-def handle(ws, _):
+#@asyncio.coroutine
+#def handle(ws, _):
+async def handle(ws, _):
     # this coroutine will be called when a new connection comes in
     # the remote_address is somewhat meaningless if proxyed by nginx
     logging.info('incoming connection from ' + str(ws.remote_address))
