@@ -1,5 +1,7 @@
 #! /bin/bash
 
+mode="$(< /etc/secrets/MODE)"
+
 set -e
 
 # use client mode by default
