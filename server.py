@@ -64,7 +64,7 @@ class SendProtocol(asyncio.DatagramProtocol):
 
 #@asyncio.coroutine
 #def ping_forever(ws):
-async ping_forever(ws):
+async def ping_forever(ws):
     try:
         while True:
             yield from ws.ping()
